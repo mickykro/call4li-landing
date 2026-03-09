@@ -1,46 +1,53 @@
 /*
- * Design: Editorial / Paper & Ink
- * Solution section: Two-column asymmetric layout with phone mockup
- * WhatsApp conversation illustration on left, text on right (RTL)
+ * Aurora Glass — Solution Section
+ * Introducing Forli with mascot prominently displayed
+ * Glass cards for feature highlights, aurora accents
  */
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { MessageCircle, Bot, Zap } from "lucide-react";
 
-const WHATSAPP_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663330217393/VZvahsqxvigDNCtzbEoTYw/whatsapp-conversation-EtZdu85YvP7MgbRmKYY4cZ.webp";
+const MASCOT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663330217393/VZvahsqxvigDNCtzbEoTYw/forli-mascot_583ebf4a.png";
 
 export default function SolutionSection() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const highlights = [
     {
       icon: Bot,
       title: "זיהוי אוטומטי",
       text: "פורלי מזהה שיחה שלא נענתה ופונה ללקוח מיד",
+      color: "text-aurora-teal",
+      bg: "bg-aurora-teal/10",
     },
     {
       icon: MessageCircle,
       title: "שיחה חכמה ב-WhatsApp",
       text: "מנהלת שיחה בשפה טבעית בשם העסק שלכם",
+      color: "text-aurora-violet",
+      bg: "bg-aurora-violet/10",
     },
     {
       icon: Zap,
       title: "סיכום מלא לבעל העסק",
       text: "כל מה שצריך לדעת — מסוכם ומוכן, בלי מאמץ",
+      color: "text-aurora-blue",
+      bg: "bg-aurora-blue/10",
     },
   ];
 
   return (
-    <section id="solution" ref={ref} className="relative py-20 lg:py-32 paper-texture">
-      {/* Decorative diagonal */}
-      <div className="absolute top-0 left-0 right-0 h-24 bg-cream-dark" style={{
-        clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 100%)"
-      }} />
+    <section id="solution" ref={ref} className="relative py-24 lg:py-36 overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-deep-space via-midnight/30 to-deep-space" />
 
-      <div className="container relative">
+      {/* Decorative aurora wisps */}
+      <div className="absolute top-0 left-0 w-[600px] h-[300px] bg-aurora-teal/5 blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[250px] bg-aurora-violet/5 blur-[100px] rounded-full" />
+
+      <div className="container relative z-10">
         {/* Section header */}
         <motion.div
           className="max-w-3xl mb-16"
@@ -48,16 +55,15 @@ export default function SolutionSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
         >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-[2px] bg-forest" />
-            <span className="text-forest font-semibold text-sm">הפתרון</span>
+          <div className="inline-flex items-center gap-2 glass-card px-4 py-1.5 mb-5">
+            <span className="w-2 h-2 rounded-full bg-aurora-teal animate-pulse" />
+            <span className="text-aurora-teal text-xs font-semibold tracking-wider">
+              הפתרון
+            </span>
           </div>
-          <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-charcoal leading-tight"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary leading-tight">
             הכירו את{" "}
-            <span className="text-forest">פורלי</span>
+            <span className="aurora-text">פורלי</span>
             <br />
             העוזרת האישית החכמה שלכם
           </h2>
@@ -72,34 +78,31 @@ export default function SolutionSection() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
-            <p className="text-lg text-warm-gray leading-relaxed mb-10 max-w-xl">
+            <p className="text-lg text-text-secondary leading-relaxed mb-10 max-w-xl">
               Call4li מפעילה עוזרת אישית חכמה בשם{" "}
-              <strong className="text-forest">פורלי</strong> — שפועלת ברגע
+              <strong className="text-aurora-teal">פורלי</strong> — שפועלת ברגע
               שהשיחה לא נענית. כשלקוח מתקשר לעסק ולא נענה, פורלי מזהה אוטומטית
               את השיחה, פונה ללקוח ב-WhatsApp בשמו של העסק, ומנהלת שיחה חכמה
               בשפה טבעית.
             </p>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {highlights.map((item, i) => (
                 <motion.div
                   key={i}
-                  className="flex gap-4 items-start group"
+                  className="glass-card-hover p-5 flex gap-4 items-start"
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.5 + i * 0.15, duration: 0.6 }}
                 >
-                  <div className="w-11 h-11 rounded-sm bg-forest/10 flex items-center justify-center shrink-0 group-hover:bg-forest group-hover:text-cream transition-all duration-300">
-                    <item.icon className="w-5 h-5 text-forest group-hover:text-cream transition-colors duration-300" />
+                  <div className={`w-11 h-11 rounded-xl ${item.bg} flex items-center justify-center shrink-0`}>
+                    <item.icon className={`w-5 h-5 ${item.color}`} />
                   </div>
                   <div>
-                    <h4
-                      className="text-base font-bold text-charcoal mb-1"
-                      style={{ fontFamily: "var(--font-display)" }}
-                    >
+                    <h4 className="text-base font-bold text-text-primary mb-1">
                       {item.title}
                     </h4>
-                    <p className="text-warm-gray text-sm leading-relaxed">
+                    <p className="text-text-secondary text-sm leading-relaxed">
                       {item.text}
                     </p>
                   </div>
@@ -107,44 +110,57 @@ export default function SolutionSection() {
               ))}
             </div>
 
-            {/* Emphasis line */}
-            <motion.p
-              className="mt-10 text-base font-semibold text-forest border-r-4 border-forest pr-4"
+            {/* Emphasis */}
+            <motion.div
+              className="mt-8 glass-card p-5 border-r-2 border-aurora-teal !rounded-r-none"
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 1, duration: 0.6 }}
             >
-              מסבירה, קובעת שיחה חוזרת, עונה על שאלות, ושולחת סיכום מלא — הכל
-              בלי שהרמתם אצבע.
-            </motion.p>
+              <p className="text-base font-semibold text-aurora-teal">
+                מסבירה, קובעת שיחה חוזרת, עונה על שאלות, ושולחת סיכום מלא — הכל
+                בלי שהרמתם אצבע.
+              </p>
+            </motion.div>
           </motion.div>
 
-          {/* Phone mockup with WhatsApp conversation */}
+          {/* Mascot with glow */}
           <motion.div
-            className="lg:col-span-5"
-            initial={{ opacity: 0, scale: 0.9 }}
+            className="lg:col-span-5 flex justify-center"
+            initial={{ opacity: 0, scale: 0.85 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
           >
-            <div className="relative max-w-sm mx-auto lg:mx-0">
-              {/* Background decoration */}
-              <div className="absolute -inset-6 bg-forest/5 rounded-lg -rotate-3" />
-              <div className="absolute -inset-4 border-2 border-burnt/10 rounded-lg rotate-2" />
+            <div className="relative">
+              {/* Glow rings */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div
+                  className="w-72 h-72 lg:w-80 lg:h-80 rounded-full border border-aurora-teal/20"
+                  animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.6, 0.3] }}
+                  transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                />
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div
+                  className="w-56 h-56 lg:w-64 lg:h-64 rounded-full border border-aurora-violet/15"
+                  animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.5, 0.2] }}
+                  transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 0.5 }}
+                />
+              </div>
 
-              <img
-                src={WHATSAPP_IMG}
-                alt="פורלי מנהלת שיחת WhatsApp חכמה עם לקוח"
-                className="relative rounded-lg shadow-2xl shadow-charcoal/15 w-full"
+              {/* Glow */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-48 h-48 lg:w-56 lg:h-56 rounded-full bg-aurora-teal/10 blur-[50px]" />
+              </div>
+
+              {/* Mascot */}
+              <motion.img
+                src={MASCOT}
+                alt="פורלי — העוזרת האישית החכמה"
+                className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 object-contain drop-shadow-2xl"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               />
-
-              {/* Floating label */}
-              <motion.div
-                className="absolute -top-3 -left-3 bg-forest text-cream px-3 py-1.5 rounded-sm shadow-lg text-xs font-bold"
-                animate={{ y: [0, -4, 0] }}
-                transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-              >
-                WhatsApp אוטומטי
-              </motion.div>
             </div>
           </motion.div>
         </div>

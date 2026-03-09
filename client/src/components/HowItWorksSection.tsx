@@ -1,167 +1,136 @@
 /*
- * Design: Editorial / Paper & Ink
- * How it works: Vertical timeline with oversized step numbers
- * Process flow illustration, editorial step-by-step layout
- * Mobile: single column with timeline on right
- * Desktop: alternating left/right cards
+ * Aurora Glass — How It Works Section
+ * Process flow with generated infographic + glass step cards
+ * Vertical timeline with glowing connectors
  */
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Phone, Route, MessageSquare, ListChecks, Bell } from "lucide-react";
+import { Phone, ArrowLeftRight, MessageSquare, ListChecks, FileText } from "lucide-react";
 
-const PROCESS_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663330217393/VZvahsqxvigDNCtzbEoTYw/process-flow-LqLwYAq6WsNctSLbNoaAHC.webp";
-
-const steps = [
-  {
-    num: "01",
-    icon: Phone,
-    title: "לקוח מחייג — השיחה לא נענית",
-    description:
-      "לקוח מתקשר לעסק שלכם, אבל אתם עסוקים, בפגישה, או פשוט לא ליד הטלפון.",
-    color: "burnt" as const,
-  },
-  {
-    num: "02",
-    icon: Route,
-    title: "Follow-Me מנתב את השיחה",
-    description:
-      "המערכת מזהה שהשיחה לא נענתה ומנתבת אותה אוטומטית למספר Twilio של Call4li.",
-    color: "forest" as const,
-  },
-  {
-    num: "03",
-    icon: MessageSquare,
-    title: "פורלי שולחת WhatsApp מיידי",
-    description:
-      "תוך שניות, פורלי שולחת ללקוח הודעת WhatsApp מותאמת אישית בשם העסק שלכם.",
-    color: "burnt" as const,
-  },
-  {
-    num: "04",
-    icon: ListChecks,
-    title: "הלקוח בוחר מה לעשות",
-    description:
-      "הלקוח יכול לבחור — לחזור עכשיו, לקבוע זמן לשיחה חוזרת, או לשאול שאלה.",
-    color: "forest" as const,
-  },
-  {
-    num: "05",
-    icon: Bell,
-    title: "פורלי מטפלת ומסכמת",
-    description:
-      "פורלי מטפלת בכל הבקשות, מסכמת את השיחה, ומעבירה לכם רק את מה שחשוב.",
-    color: "burnt" as const,
-  },
-];
+const PROCESS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663330217393/VZvahsqxvigDNCtzbEoTYw/futuristic-process-flow-cG3YXWkfKiiin6QMsXdsqH.webp";
 
 export default function HowItWorksSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
+  const steps = [
+    {
+      icon: Phone,
+      number: "01",
+      title: "לקוח מחייג לעסק",
+      description: "לקוח מתקשר לעסק — השיחה לא נענית",
+      color: "text-aurora-teal",
+      glowColor: "bg-aurora-teal/10",
+    },
+    {
+      icon: ArrowLeftRight,
+      number: "02",
+      title: "ניתוב אוטומטי",
+      description: "Follow-Me מנתב את השיחה למספר Twilio של המערכת",
+      color: "text-aurora-blue",
+      glowColor: "bg-aurora-blue/10",
+    },
+    {
+      icon: MessageSquare,
+      number: "03",
+      title: "הודעת WhatsApp מיידית",
+      description: "פורלי שולחת ללקוח הודעת WhatsApp מיידית בשם העסק",
+      color: "text-aurora-violet",
+      glowColor: "bg-aurora-violet/10",
+    },
+    {
+      icon: ListChecks,
+      number: "04",
+      title: "הלקוח בוחר",
+      description: "לחזור עכשיו, לקבוע זמן, או לשאול שאלה — הכל אוטומטי",
+      color: "text-aurora-teal",
+      glowColor: "bg-aurora-teal/10",
+    },
+    {
+      icon: FileText,
+      number: "05",
+      title: "סיכום לבעל העסק",
+      description: "פורלי מטפלת, מסכמת, ומעבירה לבעל העסק את כל מה שהוא צריך לדעת",
+      color: "text-aurora-blue",
+      glowColor: "bg-aurora-blue/10",
+    },
+  ];
+
   return (
-    <section
-      id="how-it-works"
-      ref={ref}
-      className="relative py-20 lg:py-32 bg-cream-dark paper-texture"
-    >
-      <div className="container">
+    <section id="how-it-works" ref={ref} className="relative py-24 lg:py-36 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-deep-space via-midnight/40 to-deep-space" />
+
+      <div className="container relative z-10">
         {/* Section header */}
         <motion.div
-          className="max-w-3xl mb-12"
+          className="text-center max-w-3xl mx-auto mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
         >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-[2px] bg-burnt" />
-            <span className="text-burnt font-semibold text-sm">התהליך</span>
+          <div className="inline-flex items-center gap-2 glass-card px-4 py-1.5 mb-5">
+            <span className="w-2 h-2 rounded-full bg-aurora-blue animate-pulse" />
+            <span className="text-aurora-blue text-xs font-semibold tracking-wider">
+              התהליך
+            </span>
           </div>
-          <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-charcoal leading-tight"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            איך זה עובד
-            <br />
-            <span className="text-forest">בפועל?</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary leading-tight">
+            איך זה עובד{" "}
+            <span className="aurora-text">בפועל?</span>
           </h2>
-          <p className="text-warm-gray text-lg mt-4 max-w-xl">
-            התהליך כולו אוטומטי. בעל העסק מקבל התראה רק כשיש פעולה שדורשת
-            אותו.
+          <p className="text-text-secondary text-lg mt-4 max-w-xl mx-auto">
+            התהליך כולו אוטומטי. בעל העסק מקבל פינג רק כשיש פעולה שדורשת אותו.
           </p>
         </motion.div>
 
-        {/* Process flow illustration */}
+        {/* Process flow image */}
         <motion.div
-          className="mb-16 lg:mb-20 overflow-hidden rounded-sm"
+          className="mb-20 glass-card p-4 lg:p-6 overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3, duration: 0.7 }}
         >
           <img
             src={PROCESS_IMG}
-            alt="תרשים זרימה של תהליך הטיפול האוטומטי בשיחות שלא נענו"
-            className="w-full rounded-sm shadow-lg shadow-charcoal/5"
+            alt="תרשים זרימה של תהליך פורלי"
+            className="w-full rounded-lg"
           />
         </motion.div>
 
-        {/* Steps — simple stacked cards for clarity */}
-        <div className="max-w-3xl mx-auto space-y-5">
+        {/* Step cards */}
+        <div className="grid md:grid-cols-5 gap-4 lg:gap-5">
           {steps.map((step, i) => (
             <motion.div
               key={i}
-              className="group"
-              initial={{ opacity: 0, y: 25 }}
+              className="glass-card-hover p-6 relative overflow-hidden text-center"
+              initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
+              transition={{ delay: 0.5 + i * 0.1, duration: 0.6 }}
             >
-              <div className="flex gap-5 items-start bg-white/80 backdrop-blur-sm rounded-sm p-5 lg:p-6 shadow-sm border border-forest/5 hover:shadow-md hover:border-forest/15 transition-all duration-300">
-                {/* Step number + icon */}
-                <div className="shrink-0 flex flex-col items-center gap-2">
-                  <span
-                    className={`text-3xl lg:text-4xl font-black select-none ${
-                      step.color === "burnt" ? "text-burnt/25" : "text-forest/25"
-                    }`}
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {step.num}
-                  </span>
-                  <div
-                    className={`w-10 h-10 rounded-sm flex items-center justify-center transition-colors duration-300 ${
-                      step.color === "burnt"
-                        ? "bg-burnt/10 group-hover:bg-burnt/20"
-                        : "bg-forest/10 group-hover:bg-forest/20"
-                    }`}
-                  >
-                    <step.icon
-                      className={`w-5 h-5 ${
-                        step.color === "burnt" ? "text-burnt" : "text-forest"
-                      }`}
-                    />
-                  </div>
-                </div>
+              {/* Top accent line */}
+              <div className={`absolute top-0 right-0 left-0 h-[2px] ${step.glowColor}`} />
 
-                {/* Content */}
-                <div className="flex-1 pt-1">
-                  <h3
-                    className="text-lg font-bold text-charcoal mb-1.5"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p className="text-warm-gray text-sm leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+              {/* Step number */}
+              <span
+                className={`text-xs font-bold ${step.color} mb-3 block`}
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {step.number}
+              </span>
 
-                {/* Connector line (not on last item) */}
+              {/* Icon */}
+              <div className={`w-12 h-12 rounded-xl ${step.glowColor} flex items-center justify-center mx-auto mb-4`}>
+                <step.icon className={`w-5 h-5 ${step.color}`} />
               </div>
-              {i < steps.length - 1 && (
-                <div className="flex justify-center py-1">
-                  <div className="w-[2px] h-5 bg-forest/15" />
-                </div>
-              )}
+
+              <h4 className="text-sm font-bold text-text-primary mb-2">
+                {step.title}
+              </h4>
+              <p className="text-text-muted text-xs leading-relaxed">
+                {step.description}
+              </p>
             </motion.div>
           ))}
         </div>

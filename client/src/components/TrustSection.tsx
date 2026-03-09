@@ -1,45 +1,11 @@
 /*
- * Design: Editorial / Paper & Ink
- * Trust section: Social proof with key metrics
- * Clean, minimal, editorial style with large numbers
+ * Aurora Glass — Trust / Metrics Section
+ * Glass cards with animated numbers, aurora accents
  */
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { Shield, Clock, Globe, Sparkles } from "lucide-react";
-
-function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px" });
-  const [count, setCount] = useState(0);
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    if (!inView || done) return;
-    const end = target;
-    const duration = 1200;
-    const steps = Math.ceil(duration / 16);
-    const increment = end / steps;
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= end) {
-        setCount(end);
-        setDone(true);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [inView, target, done]);
-
-  return (
-    <span ref={ref}>
-      {count.toLocaleString()}{suffix}
-    </span>
-  );
-}
 
 export default function TrustSection() {
   const ref = useRef(null);
@@ -48,64 +14,73 @@ export default function TrustSection() {
   const metrics = [
     {
       icon: Clock,
-      value: 24,
-      suffix: "/7",
+      display: "24/7",
       label: "זמינות מלאה",
       description: "פורלי עובדת סביב השעון, גם כשאתם ישנים",
+      color: "text-aurora-teal",
+      bg: "bg-aurora-teal/10",
     },
     {
       icon: Globe,
-      value: 3,
-      suffix: "",
+      display: "3",
       label: "שפות",
       description: "עברית, ערבית ואנגלית — עם זיהוי אוטומטי",
+      color: "text-aurora-violet",
+      bg: "bg-aurora-violet/10",
     },
     {
       icon: Sparkles,
-      value: 100,
-      suffix: "%",
+      display: "100%",
       label: "אוטומטי",
       description: "אפס התערבות נדרשת מבעל העסק",
+      color: "text-aurora-blue",
+      bg: "bg-aurora-blue/10",
     },
     {
       icon: Shield,
-      value: 30,
-      suffix: " שניות",
+      display: "30 שניות",
       label: "זמן תגובה",
       description: "מהשיחה שלא נענתה להודעת WhatsApp",
+      color: "text-aurora-teal",
+      bg: "bg-aurora-teal/10",
     },
   ];
 
   return (
-    <section ref={ref} className="relative py-20 lg:py-28 bg-forest overflow-hidden">
-      {/* Subtle decorative circles */}
-      <div className="absolute inset-0 opacity-[0.04]">
-        <div className="absolute top-10 right-20 w-40 h-40 border border-cream rounded-full" />
-        <div className="absolute bottom-10 left-20 w-60 h-60 border border-cream rounded-full" />
-      </div>
+    <section ref={ref} className="relative py-20 lg:py-28 overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-deep-space via-midnight to-deep-space" />
+
+      {/* Aurora wisps */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[200px] bg-aurora-teal/5 blur-[100px] rounded-full" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-aurora-violet/5 blur-[80px] rounded-full" />
 
       <div className="container relative z-10">
-        {/* Metrics grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
           {metrics.map((metric, i) => (
             <motion.div
               key={i}
-              className="text-center"
+              className="glass-card p-6 lg:p-8 text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
+              transition={{ delay: i * 0.12, duration: 0.6 }}
             >
-              <metric.icon className="w-7 h-7 text-burnt-light mx-auto mb-4" />
-              <div
-                className="text-4xl lg:text-5xl font-black text-cream mb-2"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                <AnimatedNumber target={metric.value} suffix={metric.suffix} />
+              <div className={`w-10 h-10 rounded-xl ${metric.bg} flex items-center justify-center mx-auto mb-4`}>
+                <metric.icon className={`w-5 h-5 ${metric.color}`} />
               </div>
-              <div className="text-cream/90 font-semibold text-sm mb-1">
+              <motion.div
+                className={`text-3xl lg:text-4xl font-extrabold ${metric.color} mb-2`}
+                style={{ fontFamily: "var(--font-display)" }}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ delay: 0.3 + i * 0.15, duration: 0.5, type: "spring" }}
+              >
+                {metric.display}
+              </motion.div>
+              <div className="text-text-primary font-semibold text-sm mb-1">
                 {metric.label}
               </div>
-              <div className="text-cream/50 text-xs leading-relaxed max-w-[180px] mx-auto">
+              <div className="text-text-muted text-xs leading-relaxed">
                 {metric.description}
               </div>
             </motion.div>

@@ -1,13 +1,14 @@
 /*
- * Design: Editorial / Paper & Ink
- * Navbar: Minimal, transparent on top, becomes solid on scroll
- * Font: Frank Ruhl Libre for logo, Heebo for links
- * Colors: Forest green primary, cream background, burnt orange accent
+ * Aurora Glass — Futuristic Navbar
+ * Glass-morphism nav that transitions from transparent to frosted glass on scroll
+ * Teal accent CTA, aurora gradient hover states
  */
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+
+const MASCOT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663330217393/VZvahsqxvigDNCtzbEoTYw/forli-mascot_583ebf4a.png";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,10 +24,12 @@ export default function Navbar() {
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
       e.preventDefault();
       setMobileOpen(false);
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (href === "#") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
       }
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
     },
     []
   );
@@ -43,7 +46,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-cream/95 backdrop-blur-md shadow-sm"
+          ? "bg-deep-space/80 backdrop-blur-xl border-b border-glass-border"
           : "bg-transparent"
       }`}
     >
@@ -51,44 +54,40 @@ export default function Navbar() {
         {/* Logo */}
         <a
           href="#"
-          className="flex items-center gap-2"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
+          className="flex items-center gap-2.5"
+          onClick={(e) => handleClick(e, "#")}
         >
-          <span
-            className="text-2xl lg:text-3xl font-bold text-forest"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Call4li
-          </span>
-          <span
-            className="text-sm text-warm-gray hidden sm:inline"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            | פורלי
-          </span>
+          <img src={MASCOT} alt="פורלי" className="w-9 h-9 lg:w-10 lg:h-10" />
+          <div className="flex items-center gap-1.5">
+            <span
+              className="text-xl lg:text-2xl font-bold text-text-primary"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Call4li
+            </span>
+            <span className="text-xs text-text-secondary hidden sm:inline">
+              | פורלי
+            </span>
+          </div>
         </a>
 
         {/* Desktop links */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-7">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(e) => handleClick(e, link.href)}
-              className="text-sm font-medium text-charcoal/70 hover:text-forest transition-colors duration-300"
-              style={{ fontFamily: "var(--font-body)" }}
+              className="text-sm font-medium text-text-secondary hover:text-aurora-teal transition-colors duration-300 relative group"
             >
               {link.label}
+              <span className="absolute -bottom-1 right-0 w-0 h-[2px] bg-aurora-teal group-hover:w-full transition-all duration-300" />
             </a>
           ))}
           <a
             href="#cta"
             onClick={(e) => handleClick(e, "#cta")}
-            className="bg-burnt text-cream px-5 py-2.5 rounded-sm text-sm font-semibold hover:bg-burnt-light transition-colors duration-300 shadow-sm"
-            style={{ fontFamily: "var(--font-body)" }}
+            className="bg-aurora-teal/15 text-aurora-teal border border-aurora-teal/30 px-5 py-2 rounded-lg text-sm font-semibold hover:bg-aurora-teal/25 hover:border-aurora-teal/50 transition-all duration-300 glow-teal-sm"
           >
             התחילו עכשיו
           </a>
@@ -96,7 +95,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="lg:hidden text-forest p-2"
+          className="lg:hidden text-text-primary p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -111,14 +110,14 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-cream/98 backdrop-blur-md border-t border-forest/10 overflow-hidden"
+            className="lg:hidden bg-deep-space/95 backdrop-blur-xl border-t border-glass-border overflow-hidden"
           >
-            <div className="container py-6 flex flex-col gap-4">
+            <div className="container py-6 flex flex-col gap-3">
               {links.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-base font-medium text-charcoal/80 hover:text-forest transition-colors py-2"
+                  className="text-base font-medium text-text-secondary hover:text-aurora-teal transition-colors py-2.5 border-b border-glass-border"
                   onClick={(e) => handleClick(e, link.href)}
                 >
                   {link.label}
@@ -126,7 +125,7 @@ export default function Navbar() {
               ))}
               <a
                 href="#cta"
-                className="bg-burnt text-cream px-5 py-3 rounded-sm text-sm font-semibold text-center mt-2 hover:bg-burnt-light transition-colors"
+                className="bg-aurora-teal/15 text-aurora-teal border border-aurora-teal/30 px-5 py-3 rounded-lg text-sm font-semibold text-center mt-2 hover:bg-aurora-teal/25 transition-all"
                 onClick={(e) => handleClick(e, "#cta")}
               >
                 התחילו עכשיו

@@ -1,161 +1,119 @@
 /*
- * Design: Editorial / Paper & Ink
- * Features section: Bento-style grid with editorial cards
- * Each feature has an icon, title, and description
- * Features illustration used as decorative element
+ * Aurora Glass — Features Section
+ * Bento grid with glass cards, aurora accents
+ * Each feature has a glowing icon and gradient accent
  */
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import {
-  Languages,
-  CalendarClock,
-  HelpCircle,
-  Camera,
-  Users,
-  FileText,
-} from "lucide-react";
+import { Globe, CalendarClock, HelpCircle, Image, Users, FileBarChart } from "lucide-react";
 
-const FEATURES_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663330217393/VZvahsqxvigDNCtzbEoTYw/features-illustration-NSD6ReeYDNTmrFSHSouU2B.webp";
-
-const features = [
-  {
-    icon: Languages,
-    title: "שלוש שפות, זיהוי אוטומטי",
-    description:
-      "פורלי עונה בעברית, ערבית ואנגלית — עם זיהוי שפה אוטומטי. הלקוח מדבר, פורלי מבינה.",
-    accent: "forest" as const,
-    span: "md:col-span-2 lg:col-span-1",
-  },
-  {
-    icon: CalendarClock,
-    title: "קביעת שיחות חוזרות",
-    description:
-      '"מחר ב-8", "בין 4 ל-6", "בשבוע הבא אחה״צ" — פורלי מבינה הכל ושולחת תזכורת 30 דקות לפני.',
-    accent: "burnt" as const,
-    span: "md:col-span-1 lg:col-span-1",
-  },
-  {
-    icon: HelpCircle,
-    title: "מענה על שאלות",
-    description:
-      "בהתבסס על FAQ, מוצרים ושירותים שהעסק הגדיר — פורלי עונה בצורה מדויקת ומקצועית.",
-    accent: "forest" as const,
-    span: "md:col-span-1 lg:col-span-1",
-  },
-  {
-    icon: Camera,
-    title: "ניתוח תמונות ומסמכים",
-    description:
-      "לקוח שולח תמונה או מסמך? פורלי מנתחת ומגיבה בהתאם — בלי שבעל העסק צריך להתערב.",
-    accent: "burnt" as const,
-    span: "md:col-span-1 lg:col-span-1",
-  },
-  {
-    icon: Users,
-    title: "זיהוי לקוחות חוזרים",
-    description:
-      "פורלי מזהה לקוחות חוזרים ועסקים מרובים מאותו מספר — ומתאימה את השיחה בהתאם.",
-    accent: "forest" as const,
-    span: "md:col-span-1 lg:col-span-1",
-  },
-  {
-    icon: FileText,
-    title: "סיכום שיחה אוטומטי",
-    description:
-      "סיכום מלא נשלח לבעל העסק ולא פחות חשוב — ללקוח עצמו. שקיפות מלאה, אפס מאמץ.",
-    accent: "burnt" as const,
-    span: "md:col-span-2 lg:col-span-1",
-  },
-];
+const FEATURES_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663330217393/VZvahsqxvigDNCtzbEoTYw/futuristic-features-bg-T4dw3cKPT6ftzz2AsSQWVh.webp";
 
 export default function FeaturesSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
+  const features = [
+    {
+      icon: Globe,
+      title: "שלוש שפות",
+      description: "עברית, ערבית ואנגלית — עם זיהוי שפה אוטומטי. פורלי מתאימה את עצמה ללקוח.",
+      color: "text-aurora-teal",
+      bg: "bg-aurora-teal/10",
+      span: "md:col-span-2",
+    },
+    {
+      icon: CalendarClock,
+      title: "קביעת שיחות חוזרות",
+      description: '"מחר ב-8", "בין 4 ל-6", "בשבוע הבא אחה״צ" — פורלי מבינה הכל ושולחת תזכורת 30 דקות לפני.',
+      color: "text-aurora-violet",
+      bg: "bg-aurora-violet/10",
+      span: "md:col-span-1",
+    },
+    {
+      icon: HelpCircle,
+      title: "מענה על שאלות",
+      description: "בהתבסס על FAQ, מוצרים ושירותים שהעסק הגדיר — פורלי עונה בצורה חכמה ומדויקת.",
+      color: "text-aurora-blue",
+      bg: "bg-aurora-blue/10",
+      span: "md:col-span-1",
+    },
+    {
+      icon: Image,
+      title: "ניתוח תמונות ומסמכים",
+      description: "לקוח שולח תמונה או מסמך? פורלי מנתחת ומבינה את התוכן כדי לתת מענה מדויק.",
+      color: "text-aurora-teal",
+      bg: "bg-aurora-teal/10",
+      span: "md:col-span-2",
+    },
+    {
+      icon: Users,
+      title: "זיהוי לקוחות חוזרים",
+      description: "פורלי מזהה לקוחות חוזרים ועסקים מרובים מאותו מספר — ומתאימה את השיחה בהתאם.",
+      color: "text-aurora-violet",
+      bg: "bg-aurora-violet/10",
+      span: "md:col-span-1",
+    },
+    {
+      icon: FileBarChart,
+      title: "סיכום שיחה אוטומטי",
+      description: "סיכום מלא נשלח לעסק וגם ללקוח עצמו — שקיפות מלאה, אפס מאמץ.",
+      color: "text-aurora-blue",
+      bg: "bg-aurora-blue/10",
+      span: "md:col-span-2",
+    },
+  ];
+
   return (
-    <section id="features" ref={ref} className="relative py-20 lg:py-32 paper-texture">
-      <div className="container">
-        {/* Header with illustration */}
-        <div className="grid lg:grid-cols-12 gap-8 mb-16 lg:mb-20 items-end">
-          <motion.div
-            className="lg:col-span-7"
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-[2px] bg-forest" />
-              <span className="text-forest font-semibold text-sm">יכולות</span>
-            </div>
-            <h2
-              className="text-3xl sm:text-4xl lg:text-5xl font-black text-charcoal leading-tight"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              מה פורלי
-              <br />
-              <span className="text-forest">יודעת לעשות?</span>
-            </h2>
-            <p className="text-warm-gray text-lg mt-4 max-w-xl">
-              פורלי היא לא רק בוט — היא עוזרת אישית חכמה שמבינה הקשר, שפה
-              ורגש.
-            </p>
-          </motion.div>
+    <section id="features" ref={ref} className="relative py-24 lg:py-36 overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img src={FEATURES_BG} alt="" className="w-full h-full object-cover opacity-30" />
+        <div className="absolute inset-0 bg-deep-space/80" />
+      </div>
 
-          <motion.div
-            className="lg:col-span-5"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 0.3, duration: 0.7 }}
-          >
-            <img
-              src={FEATURES_IMG}
-              alt="איור של יכולות פורלי — שפות, לוח שנה, FAQ, מצלמה, סיכום"
-              className="rounded-sm shadow-lg shadow-charcoal/5 w-full"
-            />
-          </motion.div>
-        </div>
+      <div className="container relative z-10">
+        {/* Section header */}
+        <motion.div
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="inline-flex items-center gap-2 glass-card px-4 py-1.5 mb-5">
+            <span className="w-2 h-2 rounded-full bg-aurora-violet animate-pulse" />
+            <span className="text-aurora-violet text-xs font-semibold tracking-wider">
+              יכולות
+            </span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary leading-tight">
+            מה פורלי{" "}
+            <span className="aurora-text">יודעת לעשות?</span>
+          </h2>
+        </motion.div>
 
-        {/* Grid — 3 columns on desktop, 2 on tablet */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+        {/* Bento grid */}
+        <div className="grid md:grid-cols-3 gap-5 lg:gap-6">
           {features.map((feature, i) => (
             <motion.div
               key={i}
-              className={`${feature.span} group`}
+              className={`glass-card-hover p-7 lg:p-8 relative overflow-hidden ${feature.span}`}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.3 + i * 0.08, duration: 0.5 }}
+              transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
             >
-              <div
-                className={`h-full p-6 lg:p-7 rounded-sm border transition-all duration-300 ${
-                  feature.accent === "forest"
-                    ? "border-forest/8 hover:border-forest/20 bg-forest/[0.02] hover:bg-forest/[0.05]"
-                    : "border-burnt/8 hover:border-burnt/20 bg-burnt/[0.02] hover:bg-burnt/[0.05]"
-                }`}
-              >
-                <div
-                  className={`w-11 h-11 rounded-sm flex items-center justify-center mb-4 transition-colors duration-300 ${
-                    feature.accent === "forest"
-                      ? "bg-forest/10 group-hover:bg-forest group-hover:text-cream"
-                      : "bg-burnt/10 group-hover:bg-burnt group-hover:text-cream"
-                  }`}
-                >
-                  <feature.icon
-                    className={`w-5 h-5 transition-colors duration-300 ${
-                      feature.accent === "forest"
-                        ? "text-forest group-hover:text-cream"
-                        : "text-burnt group-hover:text-cream"
-                    }`}
-                  />
+              {/* Corner glow */}
+              <div className={`absolute top-0 right-0 w-32 h-32 ${feature.bg} blur-[60px] rounded-full`} />
+
+              <div className="relative">
+                <div className={`w-12 h-12 rounded-xl ${feature.bg} flex items-center justify-center mb-5`}>
+                  <feature.icon className={`w-6 h-6 ${feature.color}`} />
                 </div>
-                <h3
-                  className="text-lg font-bold text-charcoal mb-2"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
+                <h3 className="text-lg font-bold text-text-primary mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-warm-gray text-sm leading-relaxed">
+                <p className="text-text-secondary text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </div>

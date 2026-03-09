@@ -1,15 +1,15 @@
 /*
- * Design: Editorial / Paper & Ink
- * Hero: Full-width with asymmetric layout, oversized Hebrew headline
- * Large editorial typography with warm cream background
- * Hero illustration on the left, text on the right (RTL)
+ * Aurora Glass — Futuristic Hero
+ * Dark space background with aurora gradients
+ * Forli owl mascot floating prominently
+ * Glass-morphism stat cards, aurora gradient CTA
  */
 
 import { motion } from "framer-motion";
-import { PhoneOff, ArrowDown } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
-const HERO_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663330217393/VZvahsqxvigDNCtzbEoTYw/hero-bg-8w2z4ffK5ERjCWEzwZudgZ.webp";
+const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663330217393/VZvahsqxvigDNCtzbEoTYw/futuristic-hero-bg-J9fwSruvUEqonLoCBxzp8y.webp";
+const MASCOT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663330217393/VZvahsqxvigDNCtzbEoTYw/forli-mascot_583ebf4a.png";
 
 function smoothScroll(href: string) {
   return (e: React.MouseEvent) => {
@@ -21,12 +21,32 @@ function smoothScroll(href: string) {
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center paper-texture overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-forest/5 blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-48 h-48 rounded-full bg-burnt/5 blur-3xl" />
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Aurora background */}
+      <div className="absolute inset-0">
+        <img
+          src={HERO_BG}
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-deep-space/40" />
+      </div>
 
-      <div className="container pt-24 pb-16 lg:pt-32 lg:pb-24">
+      {/* Animated gradient orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-aurora-teal/10 blur-[120px]"
+          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-aurora-violet/10 blur-[100px]"
+          animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
+          transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
+        />
+      </div>
+
+      <div className="container relative z-10 pt-24 pb-16 lg:pt-32 lg:pb-24">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Text content — right side in RTL */}
           <motion.div
@@ -35,81 +55,55 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Eyebrow */}
+            {/* Eyebrow badge */}
             <motion.div
-              className="flex items-center gap-3 mb-6"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
+              className="inline-flex items-center gap-2 glass-card px-4 py-1.5 mb-6"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <div className="w-12 h-[2px] bg-burnt" />
-              <span className="text-burnt font-semibold text-sm tracking-wide uppercase">
-                Call4li
+              <span className="w-2 h-2 rounded-full bg-aurora-teal animate-pulse" />
+              <span className="text-aurora-teal text-xs font-semibold tracking-wider">
+                AI-POWERED ASSISTANT
               </span>
             </motion.div>
 
             {/* Main headline */}
-            <h1
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-charcoal leading-[1.15] mb-6"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-text-primary leading-[1.1] mb-6">
               שיחה שלא נענתה
               <br />
-              <span className="text-forest">היא לקוח שאבד</span>
+              <span className="aurora-text">היא לקוח שאבד</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg lg:text-xl text-warm-gray leading-relaxed max-w-xl mb-8">
-              <strong className="text-charcoal">פורלי</strong> היא העוזרת האישית
+            <p className="text-lg lg:text-xl text-text-secondary leading-relaxed max-w-xl mb-10">
+              <strong className="text-aurora-teal">פורלי</strong> היא העוזרת האישית
               החכמה שמטפלת בכל שיחה שלא נענתה — אוטומטית, דרך WhatsApp, בשלוש
               שפות. בלי שתרימו אצבע.
             </p>
 
-            {/* Stats bar */}
+            {/* Stats row */}
             <motion.div
-              className="flex flex-wrap gap-8 mb-10"
+              className="flex flex-wrap gap-4 mb-10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              <div>
-                <div
-                  className="text-3xl lg:text-4xl font-black text-forest"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  570K+
-                </div>
-                <div className="text-sm text-warm-gray mt-1">
-                  עסקים פעילים בישראל
-                </div>
-              </div>
-              <div className="w-[1px] bg-forest/15 hidden sm:block" />
-              <div>
-                <div
-                  className="text-3xl lg:text-4xl font-black text-burnt"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  85%
-                </div>
-                <div className="text-sm text-warm-gray mt-1">
-                  לא ישאירו הודעה
-                </div>
-              </div>
-              <div className="w-[1px] bg-forest/15 hidden sm:block" />
-              <div>
-                <div className="flex items-center gap-2">
-                  <PhoneOff className="w-6 h-6 text-burnt/60" />
-                  <span
-                    className="text-3xl lg:text-4xl font-black text-charcoal"
+              {[
+                { value: "570K+", label: "עסקים פעילים בישראל", color: "text-aurora-teal" },
+                { value: "85%", label: "לא ישאירו הודעה", color: "text-aurora-violet" },
+                { value: "24/7", label: "זמינות מלאה", color: "text-aurora-blue" },
+              ].map((stat, i) => (
+                <div key={i} className="glass-card px-5 py-3 text-center min-w-[120px]">
+                  <div
+                    className={`text-2xl lg:text-3xl font-extrabold ${stat.color}`}
                     style={{ fontFamily: "var(--font-display)" }}
                   >
-                    מיליוני
-                  </span>
+                    {stat.value}
+                  </div>
+                  <div className="text-xs text-text-muted mt-1">{stat.label}</div>
                 </div>
-                <div className="text-sm text-warm-gray mt-1">
-                  שיחות אבודות ביום
-                </div>
-              </div>
+              ))}
             </motion.div>
 
             {/* CTA buttons */}
@@ -122,43 +116,66 @@ export default function HeroSection() {
               <a
                 href="#cta"
                 onClick={smoothScroll("#cta")}
-                className="bg-forest text-cream px-8 py-4 rounded-sm text-base font-semibold hover:bg-forest-light transition-all duration-300 shadow-lg shadow-forest/20 hover:shadow-xl hover:shadow-forest/30"
+                className="relative bg-gradient-to-l from-aurora-teal to-aurora-blue text-deep-space px-8 py-4 rounded-xl text-base font-bold hover:shadow-lg hover:shadow-aurora-teal/30 transition-all duration-300 animate-pulse-glow"
               >
                 רוצה לנסות? דברו איתנו
               </a>
               <a
                 href="#how-it-works"
                 onClick={smoothScroll("#how-it-works")}
-                className="border-2 border-forest/20 text-forest px-8 py-4 rounded-sm text-base font-semibold hover:border-forest/40 hover:bg-forest/5 transition-all duration-300"
+                className="glass-card px-8 py-4 text-text-primary text-base font-semibold hover:bg-glass-white transition-all duration-300 !rounded-xl"
               >
                 איך זה עובד?
               </a>
             </motion.div>
           </motion.div>
 
-          {/* Hero image — left side in RTL */}
+          {/* Mascot — left side in RTL */}
           <motion.div
-            className="lg:col-span-5 order-1 lg:order-2"
-            initial={{ opacity: 0, scale: 0.95 }}
+            className="lg:col-span-5 order-1 lg:order-2 flex justify-center"
+            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
           >
             <div className="relative">
-              {/* Decorative frame */}
-              <div className="absolute -inset-3 bg-forest/5 rounded-sm -rotate-2" />
-              <div className="absolute -inset-3 border-2 border-forest/10 rounded-sm rotate-1" />
-              <img
-                src={HERO_IMG}
-                alt="בעלת עסק עסוקה בחנות בזמן שהטלפון מצלצל ללא מענה"
-                className="relative rounded-sm shadow-2xl shadow-charcoal/10 w-full"
+              {/* Glow behind mascot */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-full bg-aurora-teal/15 blur-[60px]" />
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-48 h-48 lg:w-64 lg:h-64 rounded-full bg-aurora-violet/10 blur-[40px]" />
+              </div>
+
+              {/* Mascot image */}
+              <motion.img
+                src={MASCOT}
+                alt="פורלי — העוזרת האישית החכמה"
+                className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-96 lg:h-96 object-contain drop-shadow-2xl"
+                animate={{ y: [0, -12, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               />
-              {/* Floating badge */}
+
+              {/* Floating glass badges around mascot */}
               <motion.div
-                className="absolute -bottom-4 -right-4 bg-burnt text-cream px-4 py-2 rounded-sm shadow-lg"
+                className="absolute -top-2 -right-4 glass-card px-3 py-1.5 text-xs font-semibold text-aurora-teal"
                 animate={{ y: [0, -6, 0] }}
-                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut", delay: 0.5 }}
               >
-                <span className="text-xs font-bold">100% אוטומטי</span>
+                🦉 AI חכם
+              </motion.div>
+              <motion.div
+                className="absolute bottom-8 -left-6 glass-card px-3 py-1.5 text-xs font-semibold text-aurora-violet"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 1 }}
+              >
+                WhatsApp אוטומטי
+              </motion.div>
+              <motion.div
+                className="absolute top-1/2 -left-8 glass-card px-3 py-1.5 text-xs font-semibold text-aurora-blue"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ repeat: Infinity, duration: 2.8, ease: "easeInOut", delay: 1.5 }}
+              >
+                3 שפות
               </motion.div>
             </div>
           </motion.div>
@@ -170,7 +187,7 @@ export default function HeroSection() {
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
         >
-          <ArrowDown className="w-5 h-5 text-forest/40" />
+          <ArrowDown className="w-5 h-5 text-aurora-teal/50" />
         </motion.div>
       </div>
     </section>
