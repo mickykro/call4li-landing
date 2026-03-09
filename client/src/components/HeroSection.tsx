@@ -84,7 +84,7 @@ export default function HeroSection() {
 
             {/* Stats row */}
             <motion.div
-              className="flex flex-wrap gap-4 mb-10"
+              className="flex flex-nowrap gap-3 sm:gap-4 mb-10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
@@ -94,7 +94,7 @@ export default function HeroSection() {
                 { value: "85%", label: "לא ישאירו הודעה", color: "text-aurora-violet" },
                 { value: "24/7", label: "זמינות מלאה", color: "text-aurora-blue" },
               ].map((stat, i) => (
-                <div key={i} className="glass-card px-5 py-3 text-center min-w-[120px]">
+                <div key={i} className="glass-card px-4 sm:px-5 py-3 text-center flex-1">
                   <div
                     className={`text-2xl lg:text-3xl font-extrabold ${stat.color}`}
                     style={{ fontFamily: "var(--font-display)" }}

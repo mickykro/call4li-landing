@@ -1,7 +1,7 @@
 /*
  * Aurora Glass — How It Works Section
  * Process flow with generated infographic + glass step cards
- * Vertical timeline with glowing connectors
+ * Horizontal image on desktop, vertical on mobile
  */
 
 import { motion, useInView } from "framer-motion";
@@ -9,6 +9,7 @@ import { useRef } from "react";
 import { Phone, ArrowLeftRight, MessageSquare, ListChecks, FileText } from "lucide-react";
 
 const PROCESS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663330217393/VZvahsqxvigDNCtzbEoTYw/futuristic-process-flow-cG3YXWkfKiiin6QMsXdsqH.webp";
+const PROCESS_IMG_VERTICAL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663330217393/VZvahsqxvigDNCtzbEoTYw/futuristic-process-flow-vertical-fPBCss3po4ootc5CqPFK3N.webp";
 
 export default function HowItWorksSection() {
   const ref = useRef(null);
@@ -85,26 +86,33 @@ export default function HowItWorksSection() {
           </p>
         </motion.div>
 
-        {/* Process flow image */}
+        {/* Process flow image — vertical on mobile, horizontal on desktop */}
         <motion.div
           className="mb-20 glass-card p-4 lg:p-6 overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3, duration: 0.7 }}
         >
+          {/* Desktop horizontal image */}
           <img
             src={PROCESS_IMG}
             alt="תרשים זרימה של תהליך פורלי"
-            className="w-full rounded-lg"
+            className="hidden md:block w-full rounded-lg"
+          />
+          {/* Mobile vertical image */}
+          <img
+            src={PROCESS_IMG_VERTICAL}
+            alt="תרשים זרימה של תהליך פורלי"
+            className="block md:hidden w-full max-w-sm mx-auto rounded-lg"
           />
         </motion.div>
 
         {/* Step cards */}
-        <div className="grid md:grid-cols-5 gap-4 lg:gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 lg:gap-5">
           {steps.map((step, i) => (
             <motion.div
               key={i}
-              className="glass-card-hover p-6 relative overflow-hidden text-center"
+              className={`glass-card-hover p-6 relative overflow-hidden text-center ${i === 4 ? "col-span-2 md:col-span-1" : ""}`}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.5 + i * 0.1, duration: 0.6 }}
