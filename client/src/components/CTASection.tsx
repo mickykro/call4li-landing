@@ -58,7 +58,7 @@ export default function CTASection() {
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://wa.me/972XXXXXXXXX"
+                href="https://wa.me/972553163293"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-l from-aurora-teal to-aurora-blue text-deep-space px-8 py-4 rounded-xl text-base font-bold hover:shadow-lg hover:shadow-aurora-teal/30 transition-all duration-300 animate-pulse-glow"
@@ -69,7 +69,7 @@ export default function CTASection() {
                 דברו איתנו בוואטסאפ
               </a>
               <a
-                href="tel:+972XXXXXXXXX"
+                href="tel:+972548018957"
                 className="inline-flex items-center justify-center gap-2 glass-card px-8 py-4 text-text-primary text-base font-semibold hover:bg-glass-white transition-all duration-300 !rounded-xl"
               >
                 <Phone className="w-5 h-5" />
@@ -82,8 +82,8 @@ export default function CTASection() {
               <a href="mailto:info@call4li.com" className="hover:text-aurora-teal transition-colors flex items-center gap-1.5">
                 <span>✉</span> info@call4li.com
               </a>
-              <a href="tel:+972XXXXXXXXX" className="hover:text-aurora-teal transition-colors flex items-center gap-1.5">
-                <span>📞</span> +972-XX-XXX-XXXX
+              <a href="tel:+972548018957" className="hover:text-aurora-teal transition-colors flex items-center gap-1.5">
+                <span>📞</span> חייגו אלינו
               </a>
             </div>
           </div>
