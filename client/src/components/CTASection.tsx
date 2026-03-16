@@ -92,7 +92,7 @@ export default function CTASection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {/* Primary — shimmer on hover */}
               <a
-                href="https://wa.me/972XXXXXXXXX"
+                href="https://wa.me/972553163293"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-shimmer inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all duration-300"
@@ -110,8 +110,9 @@ export default function CTASection() {
 
               {/* Secondary — glass with pink hover */}
               <a
-                href="tel:+972XXXXXXXXX"
-                className="inline-flex items-center justify-center gap-2 glass-card px-8 py-4 text-text-primary text-base font-semibold !rounded-xl transition-all duration-300 hover:border-pink-400/50 hover:bg-pink-500/5"
+
+                href="tel:+972548018957"
+                className="inline-flex items-center justify-center gap-2 glass-card px-8 py-4 text-text-primary text-base font-semibold hover:bg-glass-white transition-all duration-300 !rounded-xl"
               >
                 <Phone className="w-5 h-5" />
                 התקשרו אלינו
@@ -123,8 +124,8 @@ export default function CTASection() {
               <a href="mailto:info@call4li.com" className="hover:text-pink-400 transition-colors flex items-center gap-1.5">
                 <span>✉</span> info@call4li.com
               </a>
-              <a href="tel:+972XXXXXXXXX" className="hover:text-pink-400 transition-colors flex items-center gap-1.5">
-                <span>📞</span> +972-XX-XXX-XXXX
+              <a href="tel:+972548018957" className="hover:text-aurora-teal transition-colors flex items-center gap-1.5">
+                <span>📞</span> חייגו אלינו
               </a>
             </div>
           </div>

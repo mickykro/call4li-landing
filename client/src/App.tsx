@@ -5,7 +5,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-import Contact from "./pages/Contact";
+
 import Onboard from "./pages/Onboard";
 import Delete from "./pages/Delete";
 import FAQ from "./pages/FAQ";
@@ -15,7 +15,7 @@ function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
-      <Route path={"/contact"} component={Contact} />
+
       <Route path={"/onboard/:client_id"} component={Onboard} />
       <Route path={"/delete"} component={Delete} />
       <Route path={"/faq"} component={FAQ} />
